@@ -11,14 +11,16 @@ const App = React.createClass({
 
   getInitialState() { return { slideIndex: 0 }; },
 
+  onSlideChange(current, next) {
+    this.setState({ randomVal: next });
+  },
+
   render() {
     return (
       <div style={{width: '50%', margin: 'auto'}}>
         <Carousel
           ref="carousel"
-          data={this.setCarouselData.bind(this, 'carousel')}
-          slideIndex={this.state.slideIndex}
-          afterSlide={newSlideIndex => this.setState({ slideIndex: newSlideIndex })}>
+          beforeSlide={this.onSlideChange}>
           <img src="http://placehold.it/1000x400&text=slide1"/>
           <img src="http://placehold.it/1000x400&text=slide2"/>
           <img src="http://placehold.it/1000x400&text=slide3"/>
